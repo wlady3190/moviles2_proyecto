@@ -8,12 +8,12 @@ export default function WelcomeScreen({navigation}: any) {
        <Text style={styles.titulo}>Bienvenidos!</Text>
       <TextInput style={styles.input} placeholder='Usuario'/>
       <TextInput style={styles.input} placeholder='contraseña'/>
-      <TouchableOpacity style={styles.boton}>
+      <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Tabs')}>
         <Text>
           Login
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.boton}>
+      <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Tabs')}>
         <Text>
           Crear Usuario
         </Text>
