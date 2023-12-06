@@ -6,7 +6,7 @@ export default function WelcomeScreen({navigation}: any) {
   return (
     <View>
       <TextInput placeholder='Usuario'/>
-      <TextInput placeholder='cpntraseña'/>
+      <TextInput placeholder='contraseña'/>
       <TouchableOpacity>
         <Text>
           Login
