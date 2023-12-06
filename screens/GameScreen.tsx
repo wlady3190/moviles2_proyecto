@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
+import {
+    getDatabase,
+    ref,
+    set,
+    onValue,
+    update,
+    remove,
+  } from "firebase/database";
+  // import { getDatabase, ref, onValue } from "firebase/database";
+  import { db } from "../components/Config";
+
 const GameScreen = () => {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(10); // Tiempo en segundos
   const [isRunning, setIsRunning] = useState(true);
   const [duckPosition, setDuckPosition] = useState({ x: 0, y: 0 });
   const windowWidth = Dimensions.get('window').width;
+
+
+//   function guardarScore(username: string, puntuacion:number) {
+//       set(ref(db, "users/" + username), {
+//         score:puntuacion
+//       });
+//   }
 
   useEffect(() => {
     if (time > 0 && isRunning) {

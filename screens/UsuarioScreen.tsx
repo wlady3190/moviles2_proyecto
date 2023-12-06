@@ -1,4 +1,12 @@
-import { Button, FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Button,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
 import {
@@ -11,14 +19,29 @@ import {
 } from "firebase/database";
 // import { getDatabase, ref, onValue } from "firebase/database";
 import { db } from "../components/Config";
+// import { getDatabase, ref, set } from "firebase/database";
 
 export default function UsuarioScreen() {
-  const [correo, setCorreo] = useState('')
-  const [usuario, setUsuario] = useState('')
-  const [contrasena, setContrasena] = useState('')
-  const [contrasena2, setContrasena2] = useState('')
- 
+  const [correo, setCorreo] = useState("");
+  const [usuario, setUsuario] = useState("");
+  const [contrasena, setContrasena] = useState("");
+  const [contrasena2, setContrasena2] = useState("");
 
+  function crearUsuario(correo: string, username: string, contrasenia: string) {
+
+    if (contrasena === contrasena2) {
+      set(ref(db, "users/" + username), {
+        email: correo,
+        password: contrasenia,
+      });
+      setCorreo('')
+      setUsuario('')
+      setContrasena('')
+      setContrasena2('')
+    } else {
+      Alert.alert("Error", "Las contraseñas no coinciden");
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -39,21 +62,21 @@ export default function UsuarioScreen() {
         style={styles.input}
         placeholder="Contraseña"
         onChangeText={(texto) => setContrasena(texto)}
-        value={contrasena}
+        value={contrasena} 
       />
-       <TextInput
+      <TextInput
         style={styles.input}
         placeholder="Confirmar Contraseña"
         onChangeText={(texto) => setContrasena2(texto)}
         value={contrasena2}
       />
       <View style={styles.boton}>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => crearUsuario(correo, usuario, contrasena)}
+        >
           <Text>Crear Usuario</Text>
         </TouchableOpacity>
-     
       </View>
-
     </View>
   );
 }
@@ -88,14 +111,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   boton: {
-    backgroundColor: 'gray',
+    backgroundColor: "gray",
     padding: 10,
     borderRadius: 5,
-    marginTop:20
-
-},
-titulo: {
-  fontSize: 60,
-  marginBottom: 10,
-},
+    marginTop: 20,
+  },
+  titulo: {
+    fontSize: 60,
+    marginBottom: 10,
+  },
 });
