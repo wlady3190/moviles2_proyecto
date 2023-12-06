@@ -22,7 +22,7 @@ export default function UsuarioScreen() {
 
   return (
     <View style={styles.container}>
-      <Text>Registro de usuarios</Text>
+      <Text style={styles.titulo}>Registro de usuario</Text>
       <TextInput
         style={styles.input}
         placeholder="Correo electronico"
@@ -47,7 +47,7 @@ export default function UsuarioScreen() {
         onChangeText={(texto) => setContrasena2(texto)}
         value={contrasena2}
       />
-      <View style={styles.fila}>
+      <View style={styles.boton}>
         <TouchableOpacity>
           <Text>Crear Usuario</Text>
         </TouchableOpacity>
@@ -87,4 +87,15 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginHorizontal: 20,
   },
+  boton: {
+    backgroundColor: 'gray',
+    padding: 10,
+    borderRadius: 5,
+    marginTop:20
+
+},
+titulo: {
+  fontSize: 60,
+  marginBottom: 10,
+},
 });
