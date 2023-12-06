@@ -1,11 +1,17 @@
-import { Button, StyleSheet, Text, View } from 'react-native'
+import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
+import { TextInput } from 'react-native-gesture-handler'
 
 export default function WelcomeScreen({navigation}: any) {
   return (
     <View>
-      <Text>Welcome</Text>
-      <Button title='Ir a Usuario' onPress={()=> navigation.navigate('Usuario')}/>
+      <TextInput placeholder='Usuario'/>
+      <TextInput placeholder='contraseña'/>
+      <TouchableOpacity>
+        <Text>
+          Login
+        </Text>
+      </TouchableOpacity>
     </View>
   )
 }
