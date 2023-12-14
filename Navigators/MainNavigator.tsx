@@ -16,7 +16,7 @@ function MyTabs() {
     <Tab.Navigator>
       <Tab.Screen name="Welcome" component={ScoreScreen} />
       <Tab.Screen name="Juego" component={GameScreen} />
-      <Tab.Screen name="Usuario" component={UsuarioScreen} />
+     
 
     </Tab.Navigator>
   );
@@ -27,6 +27,7 @@ function MyStack() {
       <Stack.Navigator>
         <Stack.Screen name='WELCOME' component={ WelcomeScreen} />
         <Stack.Screen name="Tabs" component={MyTabs} />
+        <Tab.Screen name="Usuario" component={UsuarioScreen} />
       </Stack.Navigator>
     );
   }

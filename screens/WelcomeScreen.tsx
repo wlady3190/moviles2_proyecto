@@ -1,19 +1,66 @@
 import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { TextInput } from 'react-native-gesture-handler'
+import { auth } from '../components/Config';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export default function WelcomeScreen({navigation}: any) {
+  const [email, setemail] = useState("");
+  const [password, setpassword] = useState("");
+  function login() {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        //console.log(user)
+        //console.log('accso correcto')
+        setemail("");
+        setpassword("");
+        navigation.navigate("Tabs");
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        //console.log('accseso denegado')
+        setemail("");
+        setpassword("");
+        console.log(errorCode);
+        console.log(errorMessage);
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            console.log('La dirección de correo electrónico no es válida.');
+            break;
+          case 'auth/user-disabled':
+            console.log('La cuenta de usuario ha sido deshabilitada.');
+            break;
+          case 'auth/user-not-found':
+          case 'auth/wrong-password':
+            console.log('Credenciales incorrectas. Verifica tu correo y contraseña.');
+            break;
+          default:
+            console.log('Ocurrió un error durante el inicio de sesión:', errorMessage);
+        }
+        
+      });}
   return (
     <View style={styles.container}>
        <Text style={styles.titulo}>Bienvenidos!</Text>
-      <TextInput style={styles.input} placeholder='Usuario'/>
-      <TextInput style={styles.input} placeholder='contraseña'/>
-      <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Tabs')}>
+      <TextInput 
+      style={styles.input} 
+      placeholder='Correo'
+      value={email}
+      onChangeText={(text)=>setemail(text)}/>
+      <TextInput 
+      style={styles.input} 
+      placeholder='contraseña'
+      value={password}
+      onChangeText={(text)=>setpassword(text)}/>
+      <TouchableOpacity style={styles.boton} onPress={() => login()}>
         <Text>
           Login
         </Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Tabs')}>
+      <TouchableOpacity style={styles.boton} onPress={() => navigation.navigate('Usuario')}>
         <Text>
           Crear Usuario
         </Text>
