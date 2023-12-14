@@ -6,6 +6,7 @@ import WelcomeScreen from '../screens/WelcomeScreen';
 import UsuarioScreen from '../screens/UsuarioScreen';
 import GameScreen from '../screens/GameScreen';
 import ScoreScreen from '../screens/ScoreScreen';
+import PerfilScreen from '../screens/PerfilScreen';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
@@ -16,6 +17,8 @@ function MyTabs() {
     <Tab.Navigator>
       <Tab.Screen name="Welcome" component={ScoreScreen} />
       <Tab.Screen name="Juego" component={GameScreen} />
+      <Tab.Screen name="Perfil" component={PerfilScreen} />
+
      
 
     </Tab.Navigator>

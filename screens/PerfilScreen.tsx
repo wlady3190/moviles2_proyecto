@@ -24,15 +24,50 @@ export default function PerfilScreen() {
   }, [])
 
   return (
-    <View>
-      <Text>Perfil</Text>
-      <Text>User: </Text>
-      <Text>Correo: </Text>
-      <Text>Score: </Text>
-      
-      
+    <View style={styles.container}>
+      <Image
+        source={{ uri: 'URL_DE_TU_IMAGEN' }}
+        style={styles.profileImage}
+      />
+      <View style={styles.userInfo}>
+        <Text style={styles.label}>User:</Text>
+        <Text style={styles.info}></Text>
+
+        <Text style={styles.label}>Correo:</Text>
+        <Text style={styles.info}></Text>
+
+        <Text style={styles.label}>Score:</Text>
+        <Text style={styles.info}></Text>
+      </View>
     </View>
-  )
+  );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+  },
+  profileImage: {
+    width: 250,
+    height: 250,
+    borderRadius: 20,
+    marginBottom: 20,
+    borderWidth: 2, // 
+    borderColor: 'black',
+  },
+  userInfo: {
+    alignItems: 'center',
+  },
+  label: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  info: {
+    fontSize: 16,
+    marginBottom: 15,
+  },
+});
