@@ -19,7 +19,7 @@ export default function WelcomeScreen({ navigation }: any) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        //console.log(user)
+        console.log(user)
         //console.log('accso correcto')
         setemail("");
         setpassword("");
