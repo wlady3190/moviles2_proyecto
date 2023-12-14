@@ -63,12 +63,14 @@ export default function WelcomeScreen({ navigation }: any) {
         placeholder="Correo"
         value={email}
         onChangeText={(text) => setemail(text)}
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
-        placeholder="contraseña"
+        placeholder="Contraseña"
         value={password}
         onChangeText={(text) => setpassword(text)}
+        secureTextEntry
       />
       <TouchableOpacity style={styles.boton} onPress={() => login()}>
         <Text>Login</Text>

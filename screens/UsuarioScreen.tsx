@@ -95,8 +95,8 @@ export default function UsuarioScreen({ navigation }: any) {
             case "auth/invalid-email":
               Alert.alert("Error", "Correo inválido");
               break;
-              case "auth/email-already-in-use":
-                Alert.alert('Error', 'Correo ya registrado')
+            case "auth/email-already-in-use":
+              Alert.alert("Error", "Correo ya registrado");
             default:
               Alert.alert("Error", "Error en las credenciales");
               break;
@@ -139,6 +139,7 @@ export default function UsuarioScreen({ navigation }: any) {
         onChangeText={(texto) => setCorreo(texto)}
         value={correo}
         keyboardType="email-address"
+        
       />
       <TextInput
         style={styles.input}
@@ -151,12 +152,14 @@ export default function UsuarioScreen({ navigation }: any) {
         placeholder="Contraseña"
         onChangeText={(texto) => setContrasena(texto)}
         value={contrasena}
+        secureTextEntry={true}
       />
       <TextInput
         style={styles.input}
         placeholder="Confirmar Contraseña"
         onChangeText={(texto) => setContrasena2(texto)}
         value={contrasena2}
+        secureTextEntry={true}
       />
       {/* <Image source={{ uri: image }} style={styles.img} /> */}
 
