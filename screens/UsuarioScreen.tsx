@@ -68,6 +68,7 @@ export default function UsuarioScreen({ navigation }: any) {
           email: correo,
           username: username,
           url: imageUrl, //Usestate
+          score:0
         });
       } catch (error) {
         console.log(error);

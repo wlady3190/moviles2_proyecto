@@ -1,11 +1,22 @@
-import { StyleSheet, Text, View,Image } from 'react-native'
+import { StyleSheet, Text, View,Image, Button } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import {db} from '../components/Config'
+import {auth, db} from '../components/Config'
 import { getDatabase, ref, set, onValue, update, remove } from 'firebase/database'
 
 
 export default function PerfilScreen() {
     const [usuarios, setUsuarios] = useState([])
+    const [url, seturl] = useState('')
+    const [user, setuser] = useState('')
+    const [correo, setcorreo] = useState('')
+    const [score, setscore] = useState(0)
+    type item={
+      key:string,
+      url: string,
+      email: string,
+      score: number
+
+    }
     //////////LEER
   function leer() {
     const starCountRef = ref(db, 'users/');
@@ -15,6 +26,25 @@ export default function PerfilScreen() {
       let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
       setUsuarios(dataArray)
       console.log(usuarios)
+      console.log(auth.currentUser?.email)
+      for(let dato of usuarios){
+        let item:item =dato
+        
+        if(item.email===auth.currentUser?.email){
+          seturl(item.url)
+          setuser(item.key)
+          setcorreo(item.email)
+          setscore(item.score)
+          break
+
+        }else{
+          seturl('')
+          setuser('')
+          setcorreo('')
+          setscore(0)
+        }
+
+      }
 
     });
   }
@@ -26,18 +56,20 @@ export default function PerfilScreen() {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: 'URL_DE_TU_IMAGEN' }}
+        source={{ uri: url }}
         style={styles.profileImage}
       />
       <View style={styles.userInfo}>
-        <Text style={styles.label}>User:</Text>
+        <Text style={styles.label}>User:{user}</Text>
         <Text style={styles.info}></Text>
 
-        <Text style={styles.label}>Correo:</Text>
+        <Text style={styles.label}>Correo:{correo}</Text>
         <Text style={styles.info}></Text>
 
-        <Text style={styles.label}>Score:</Text>
+        <Text style={styles.label}>Score:{score}</Text>
         <Text style={styles.info}></Text>
+
+        <Button title='recargar' onPress={()=>leer()}/>
       </View>
     </View>
   );
