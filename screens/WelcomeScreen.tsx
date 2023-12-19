@@ -5,6 +5,8 @@ import {
   Text,
   TouchableOpacity,
   View,
+  ImageBackground,
+  Image
 } from "react-native";
 import React, { useState } from "react";
 import { TextInput } from "react-native-gesture-handler";
@@ -56,8 +58,13 @@ export default function WelcomeScreen({ navigation }: any) {
       });
   }
   return (
+    <ImageBackground
+      source={require("../assets/campo1.jpeg")}
+      style={styles.backgroundImage}
+    >
     <View style={styles.container}>
-      <Text style={styles.titulo}>Bienvenidos!</Text>
+      <Image source={require("../assets/logo1-PhotoRoom.png-PhotoRoom.png")}
+      style={styles.logo}/>
       <TextInput
         style={styles.input}
         placeholder="Correo"
@@ -82,6 +89,7 @@ export default function WelcomeScreen({ navigation }: any) {
         <Text>Crear Usuario</Text>
       </TouchableOpacity>
     </View>
+    </ImageBackground>
   );
 }
 
@@ -95,20 +103,34 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 60,
     marginBottom: 10,
+    color: "white", // Texto en color blanco para que resalte sobre el fondo verde.
   },
+
   input: {
     height: 40,
-    borderColor: "gray",
+    borderColor: "white", // Borde blanco para que se integre con el fondo verde.
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 8,
     paddingRight: 8,
     width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.8)", // Fondo blanco con opacidad para que se vea bien sobre el césped.
   },
+
   boton: {
-    backgroundColor: "gray",
+    backgroundColor: "rgba(128, 128, 128, 0.8)", // Gris con opacidad para que se vea bien sobre el césped.
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", 
+    justifyContent: "center",
+  },
+  logo: {
+    width: 500, 
+    height: 200, 
+    marginBottom: 20, 
   },
 });

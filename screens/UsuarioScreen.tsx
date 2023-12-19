@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   View,
   Image,
+  ImageBackground
+
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -62,12 +64,12 @@ export default function UsuarioScreen({ navigation }: any) {
         //Obtiene la URL de la imagen
         const imageURL = await getDownloadURL(storageRef);
         console.log("URL de descarga de la imagen", imageURL);
-        //setImageUrl(imageURL);
+        setImageUrl(imageURL);
         //Guardando en la DB
         set(refStorage(db, "users/" + username), {
           email: correo,
           username: username,
-          url: imageURL, //Usestate
+          url: imageUrl, //Usestate
           score:0
         });
       } catch (error) {
@@ -132,8 +134,17 @@ export default function UsuarioScreen({ navigation }: any) {
   };
 
   return (
+    <ImageBackground
+      source={require("../assets/campo1.jpeg")}
+      style={styles.backgroundImage}
+    >
     <View style={styles.container}>
-      <Text style={styles.titulo}>Registro de usuario</Text>
+      
+
+      
+      <Image source={require("../assets/logo1-PhotoRoom.png-PhotoRoom.png")}
+      style={styles.logo}/>
+      <Text style={styles.titulo}>REGISTRO</Text>
       <TextInput
         style={styles.input}
         placeholder="Correo electronico"
@@ -162,7 +173,7 @@ export default function UsuarioScreen({ navigation }: any) {
         value={contrasena2}
         secureTextEntry={true}
       />
-      {/* <Image source={{ uri: image }} style={styles.img} /> */}
+      
 
       <View style={styles.boton}>
         <TouchableOpacity onPress={() => pickImageAsync()}>
@@ -176,8 +187,13 @@ export default function UsuarioScreen({ navigation }: any) {
           <Text>Crear Usuario</Text>
         </TouchableOpacity>
       </View>
+      
     </View>
+    </ImageBackground>
+
+    
   );
+  
 }
 
 const styles = StyleSheet.create({
@@ -185,17 +201,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor:'#ccc'
+    paddingHorizontal: 16,
+   
   },
-  input: {
-    borderWidth: 1,
-    height: 35,
-    width: "80%",
-    margin: 4,
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    borderColor: "black",
-  },
+  
   input2: {
     borderWidth: 1,
     height: 35,
@@ -209,20 +218,42 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginHorizontal: 20,
   },
+ 
+  titulo: {
+    fontSize:70,
+    marginBottom: 10,
+    color:'#ffb402',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 3, height: 5 }, 
+    textShadowRadius: 2,
+  },
+  
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", 
+    justifyContent: "center",
+  },
+  input: {
+    height: 40,
+    borderColor: "white", 
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingLeft: 8,
+    paddingRight: 8,
+    width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.8)", 
+  },
+
   boton: {
-    backgroundColor: "gray",
+    backgroundColor: "rgba(128, 128, 128, 0.8)", 
     padding: 10,
     borderRadius: 5,
-    marginTop: 20,
-  },
-  titulo: {
-    fontSize: 60,
     marginBottom: 10,
   },
-  img: {
-    width: 200,
-    height: 200,
-    alignSelf: "center",
-    marginTop: 16,
+  logo: {
+    width: 300, 
+    height: 200, 
+   
   },
 });
