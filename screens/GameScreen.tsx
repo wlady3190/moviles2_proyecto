@@ -19,9 +19,19 @@ const GameScreen = () => {
   const [isRunning, setIsRunning] = useState(true);
   const [duckPosition, setDuckPosition] = useState({ x: 0, y: 0 });
   const windowWidth = Dimensions.get('window').width;
+  const windowHeight = Dimensions.get('window').height;
+  const gameAreaWidth = windowWidth - 50; // Ajusta el tamaño de la región de juego
+  const gameAreaHeight = windowHeight - 100;
+
   const [user, setuser] = useState('')
   const [score2, setScore2] = useState(0);
   const [usuarios, setUsuarios] = useState([])
+
+  const getRandomPosition = () => {
+    const newX = Math.floor(Math.random() * gameAreaWidth)
+    const newY = Math.floor(Math.random() * gameAreaHeight);
+    return { x: newX, y: newY };
+  };
 
   type item={
     key:string,
@@ -69,18 +79,13 @@ function leer() {
 
   });
 }
-
-
-
-
-
   useEffect(() => {
     leer()
+
     if (time > 0 && isRunning) {
       const timer = setTimeout(() => {
-        // Mueve el pato a una posición aleatoria en el ancho de la pantalla
-        const newX = Math.floor(Math.random() * windowWidth);
-        setDuckPosition({ x: newX, y: 0 });
+        // Mueve el pato a una posición aleatoria en la pantalla
+        setDuckPosition(getRandomPosition());
 
         setTime(time - 1);
       }, 1000);
