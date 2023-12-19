@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ImageBackground, } from 'react-native';
 
 
 import {
@@ -110,15 +110,20 @@ function leer() {
   };
 
   return (
+    <ImageBackground
+    source={require("../assets/campo1.jpeg")}
+    style={styles.backgroundImage}
+  >
+
     <View style={styles.container}>
-      <Text style={styles.scoreText}>Puntuación: {score}</Text>
-      <Text style={styles.timeText}>Tiempo restante: {time}s</Text>
+      <Text style={styles.text}>Puntuación: {score}</Text>
+      <Text style={styles.text}>Tiempo restante: {time}s</Text>
       <TouchableOpacity
         style={[styles.duck, { left: duckPosition.x, top: duckPosition.y }]}
         onPress={handleDuckPress}
       >
         {/* Coloca aquí la imagen del pato */}
-        <Text style={styles.duckText}>🦆</Text>
+        <Text style={styles.duckText}>🪳</Text>
       </TouchableOpacity>
       {!isRunning && (
         <TouchableOpacity style={styles.restartButton} onPress={handleRestart}>
@@ -126,6 +131,7 @@ function leer() {
         </TouchableOpacity>
       )}
     </View>
+    </ImageBackground>
   );
 };
 
@@ -150,17 +156,34 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   duckText: {
-    fontSize: 30,
+    fontSize: 40,
   },
   restartButton: {
-    marginTop: 20,
+    backgroundColor: "#ffb402", 
     padding: 10,
-    backgroundColor: 'green',
     borderRadius: 5,
+    marginTop: 90,
   },
   restartButtonText: {
-    fontSize: 16,
-    color: 'white',
+    fontSize:16,
+    marginBottom: 5,
+    color:'black',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 1, height: 1 }, 
+    textShadowRadius: 2,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", 
+    justifyContent: "center",
+  },
+  text: {
+    marginBottom: 10,
+    color:'white',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    fontSize:20,
   },
 });
 

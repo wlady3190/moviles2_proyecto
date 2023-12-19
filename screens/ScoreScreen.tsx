@@ -1,4 +1,4 @@
-import { Button, FlatList, StyleSheet, Text, View } from 'react-native'
+import { Button, FlatList, StyleSheet, Text, View,ImageBackground,Image,TouchableOpacity} from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {auth, db } from "../components/Config";
 import {
@@ -9,6 +9,7 @@ import {
   update,
   remove,
 } from "firebase/database";
+import Card from '../components/Card'; 
 
 const ScoreScreen = () => {
   const [usuarios, setUsuarios] = useState([])
@@ -17,7 +18,6 @@ const ScoreScreen = () => {
     url: string,
     email: string,
     score: number
-
   }
 
   function leer() {
@@ -36,23 +36,77 @@ const ScoreScreen = () => {
     leer()
   }, [])
   return (
-    <View>
-      <Text>ScoreScreen</Text>
+    <ImageBackground
+    source={require("../assets/campo1.jpeg")}
+    style={styles.backgroundImage}>
+
+    <View style={styles.container}>
+      
+      <Text style={styles.titulo}>SCOREBOARD</Text>
+      <TouchableOpacity
+      style={styles.boton}
+      onPress={()=>leer()}>
+        <Text style={styles.text}>Recargar</Text>
+      </TouchableOpacity>
       <FlatList
         data={usuarios}
         renderItem={({item})=>(
+         
           <View >
-          <Text>{item.key} {item.score}</Text>
+         
+          <Card
+              email={item.key}
+              score={item.score}
+            />
           
           </View>
         )}
       />
       
-      <Button title='recargar' onPress={()=>leer()}/>
     </View>
+    </ImageBackground>
   )
 }
 
 export default ScoreScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 16,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", 
+    justifyContent: "center",
+  },
+ 
+  titulo: {
+    fontSize:50,
+    marginBottom: 10,
+    color:'#ffb402',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 3, height: 5 }, 
+    textShadowRadius: 2,
+  },
+  boton: {
+    backgroundColor: "#ffb402", // Gris con opacidad para que se vea bien sobre el césped.
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 10,
+   
+  },
+  text: {
+    fontSize:15,
+    marginBottom: 5,
+    color:'black',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 1, height: 1 }, 
+    textShadowRadius: 2,
+  },
+ 
+})

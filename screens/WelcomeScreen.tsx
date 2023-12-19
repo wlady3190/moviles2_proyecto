@@ -80,13 +80,13 @@ export default function WelcomeScreen({ navigation }: any) {
         secureTextEntry
       />
       <TouchableOpacity style={styles.boton} onPress={() => login()}>
-        <Text>Login</Text>
+        <Text style={styles.text}>Login</Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.boton}
         onPress={() => navigation.navigate("Usuario")}
       >
-        <Text>Crear Usuario</Text>
+        <Text style={styles.text}>Crear Usuario</Text>
       </TouchableOpacity>
     </View>
     </ImageBackground>
@@ -103,25 +103,29 @@ const styles = StyleSheet.create({
   titulo: {
     fontSize: 60,
     marginBottom: 10,
-    color: "white", // Texto en color blanco para que resalte sobre el fondo verde.
+    color: "white",
   },
 
   input: {
     height: 40,
-    borderColor: "white", // Borde blanco para que se integre con el fondo verde.
+    borderColor: "white", 
     borderWidth: 1,
     marginBottom: 10,
     paddingLeft: 8,
     paddingRight: 8,
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.8)", // Fondo blanco con opacidad para que se vea bien sobre el césped.
+    backgroundColor: "rgba(255, 255, 255, 0.8)", 
+    borderRadius:15
   },
 
   boton: {
-    backgroundColor: "rgba(128, 128, 128, 0.8)", // Gris con opacidad para que se vea bien sobre el césped.
+    backgroundColor: "#ffb402", 
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
+    
+    
+    
   },
   backgroundImage: {
     flex: 1,
@@ -132,5 +136,14 @@ const styles = StyleSheet.create({
     width: 500, 
     height: 200, 
     marginBottom: 20, 
+  },
+  text: {
+    fontSize:15,
+    marginBottom: 5,
+    color:'black',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 1, height: 1 }, 
+    textShadowRadius: 2,
   },
 });

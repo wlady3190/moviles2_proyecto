@@ -177,14 +177,14 @@ export default function UsuarioScreen({ navigation }: any) {
 
       <View style={styles.boton}>
         <TouchableOpacity onPress={() => pickImageAsync()}>
-          <Text>Cargar imagen</Text>
+          <Text style={styles.text}>Cargar imagen</Text>
         </TouchableOpacity>
       </View>
       <View style={styles.boton}>
         <TouchableOpacity
           onPress={() => crearUsuario(correo, usuario, contrasena)}
         >
-          <Text>Crear Usuario</Text>
+          <Text style={styles.text}>Crear Usuario</Text>
         </TouchableOpacity>
       </View>
       
@@ -203,16 +203,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 16,
    
-  },
-  
-  input2: {
-    borderWidth: 1,
-    height: 35,
-    width: "30%",
-    margin: 4,
-    borderRadius: 30,
-    paddingHorizontal: 20,
-    borderColor: "black",
   },
   fila: {
     flexDirection: "row",
@@ -243,10 +233,11 @@ const styles = StyleSheet.create({
     paddingRight: 8,
     width: "100%",
     backgroundColor: "rgba(255, 255, 255, 0.8)", 
+    borderRadius:15
   },
 
   boton: {
-    backgroundColor: "rgba(128, 128, 128, 0.8)", 
+    backgroundColor: "#ffb402", 
     padding: 10,
     borderRadius: 5,
     marginBottom: 10,
@@ -255,5 +246,14 @@ const styles = StyleSheet.create({
     width: 300, 
     height: 200, 
    
+  },
+  text: {
+    fontSize:15,
+    marginBottom: 5,
+    color:'black',
+    fontWeight:"bold",
+    textShadowColor: '#fffb88',
+    textShadowOffset: { width: 1, height: 1 }, 
+    textShadowRadius: 2,
   },
 });
