@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 
+
 import {
     getDatabase,
     ref,
@@ -10,7 +11,7 @@ import {
     remove,
   } from "firebase/database";
   // import { getDatabase, ref, onValue } from "firebase/database";
-  import { db } from "../components/Config";
+  import {auth, db } from "../components/Config";
 
 const GameScreen = () => {
   const [score, setScore] = useState(0);
@@ -18,15 +19,63 @@ const GameScreen = () => {
   const [isRunning, setIsRunning] = useState(true);
   const [duckPosition, setDuckPosition] = useState({ x: 0, y: 0 });
   const windowWidth = Dimensions.get('window').width;
+  const [user, setuser] = useState('')
+  const [score2, setScore2] = useState(0);
+  const [usuarios, setUsuarios] = useState([])
 
+  type item={
+    key:string,
+    url: string,
+    email: string,
+    score: number
+
+  }
 
 //   function guardarScore(username: string, puntuacion:number) {
 //       set(ref(db, "users/" + username), {
 //         score:puntuacion
 //       });
 //   }
+function leer() {
+  if(score>score2){
+    update(ref(db, "users/" + user), {
+     
+      score: score
+    });
+
+  }
+  const starCountRef = ref(db, 'users/');
+  onValue(starCountRef, (snapshot) => {
+    const data = snapshot.val();
+
+    let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
+    setUsuarios(dataArray)
+    console.log(usuarios)
+    console.log(auth.currentUser?.email)
+    for(let dato of usuarios){
+      let item:item =dato
+      
+      if(item.email===auth.currentUser?.email){
+        setuser(item.key)
+        setScore2(item.score)
+        
+        break
+
+      }else{
+        
+      }
+
+    }
+
+  });
+}
+
+
+
+
 
   useEffect(() => {
+    leer()
     if (time > 0 && isRunning) {
       const timer = setTimeout(() => {
         // Mueve el pato a una posición aleatoria en el ancho de la pantalla
