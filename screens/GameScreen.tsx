@@ -47,13 +47,7 @@ const GameScreen = () => {
 //       });
 //   }
 function leer() {
-  if(score>score2){
-    update(ref(db, "users/" + user), {
-     
-      score: score
-    });
-
-  }
+  
   const starCountRef = ref(db, 'users/');
   onValue(starCountRef, (snapshot) => {
     const data = snapshot.val();
@@ -78,6 +72,13 @@ function leer() {
     }
 
   });
+  if(score>score2){
+    update(ref(db, "users/" + user), {
+     
+      score: score
+    });
+
+  }
 }
   useEffect(() => {
     leer()
