@@ -48,9 +48,9 @@ export default function PerfilScreen() {
 
     });
   }
+  
   useEffect(() => {
     leer()
-
   }, [])
 
   return (
