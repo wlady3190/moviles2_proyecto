@@ -27,10 +27,7 @@ const ScoreScreen = () => {
       const data = snapshot.val();
   
       let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
-      setUsuarios(dataArray)
-      console.log(usuarios)
-      console.log(auth.currentUser?.email)
-     
+      setUsuarios(dataArray)    
     });
   
   }

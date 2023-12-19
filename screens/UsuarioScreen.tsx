@@ -64,12 +64,12 @@ export default function UsuarioScreen({ navigation }: any) {
         //Obtiene la URL de la imagen
         const imageURL = await getDownloadURL(storageRef);
         console.log("URL de descarga de la imagen", imageURL);
-        setImageUrl(imageURL);
+        // setImageUrl(imageURL);
         //Guardando en la DB
         set(refStorage(db, "users/" + username), {
           email: correo,
           username: username,
-          url: imageUrl, //Usestate
+          url: imageURL, //Usestate
           score:0
         });
       } catch (error) {
