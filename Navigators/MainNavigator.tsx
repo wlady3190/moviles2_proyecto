@@ -28,8 +28,8 @@ function MyTabs() {
 function MyStack() {
     return (
       <Stack.Navigator>
-        <Stack.Screen name='WELCOME' component={ WelcomeScreen} />
-        <Stack.Screen name="Tabs" component={MyTabs} />
+        <Stack.Screen name='WELCOME' component={ WelcomeScreen} options={{headerShown:false}} />
+        <Stack.Screen name="Tabs" component={MyTabs}  />
         <Tab.Screen name="Usuario" component={UsuarioScreen} />
       </Stack.Navigator>
     );

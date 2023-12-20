@@ -1,13 +1,13 @@
 {
   "expo": {
-    "name": "app-fire",
-    "slug": "app-fire",
+    "name": "bug smasher",
+    "slug": "bug smasher",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/cucarachapreview.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/cucarachapreview.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -19,12 +19,18 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo1-PhotoRoom.png-PhotoRoom.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.wlady3190.bugSmasher"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a255000b-2270-405e-a630-f3e9bdfebb37"
+      }
     }
   }
 }

@@ -24,17 +24,12 @@ const Card: React.FC<CardProps>= ({ email, score }) => (
 const styles = StyleSheet.create({
   card: {
     
-    padding: 16,
-    margin: 8,
+    padding: 25,
+    marginVertical: -10,
     borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    alignSelf:'center',
+    justifyContent:'center',
+    gap:-10
   },
   title: {
     fontSize: 18,
