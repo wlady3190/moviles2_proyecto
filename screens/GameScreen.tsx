@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ImageBackground, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, ImageBackground,Image } from 'react-native';
 
 
 import {
@@ -111,7 +111,7 @@ function leer() {
 
   return (
     <ImageBackground
-    source={require("../assets/campo1.jpeg")}
+    source={require("../assets/fondo-final.jpeg")}
     style={styles.backgroundImage}
   >
 
@@ -122,14 +122,22 @@ function leer() {
         style={[styles.duck, { left: duckPosition.x, top: duckPosition.y }]}
         onPress={handleDuckPress}
       >
-        {/* Coloca aquí la imagen del pato */}
-        <Text style={styles.duckText}>🪳</Text>
+        <Image source={require("../assets/cucarachapreview.png")}
+        style={styles.img}/>
+        
       </TouchableOpacity>
       {!isRunning && (
-        <TouchableOpacity style={styles.restartButton} onPress={handleRestart}>
-          <Text style={styles.restartButtonText}>Reiniciar Juego</Text>
+        <TouchableOpacity  onPress={handleRestart}>
+           <Image  source={require("../assets/panel.png")}
+        style={styles.img2}/>
+          <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Reiniciar Juego</Text>
+
+    </View>
         </TouchableOpacity>
+        
       )}
+         
     </View>
     </ImageBackground>
   );
@@ -151,28 +159,18 @@ const styles = StyleSheet.create({
   },
   duck: {
     position: 'absolute',
-    backgroundColor: 'lightblue',
-    padding: 20,
-    borderRadius: 50,
+   
   },
   duckText: {
     fontSize: 40,
   },
   restartButton: {
-    backgroundColor: "#ffb402", 
+   
     padding: 10,
     borderRadius: 5,
     marginTop: 90,
   },
-  restartButtonText: {
-    fontSize:16,
-    marginBottom: 5,
-    color:'black',
-    fontWeight:"bold",
-    textShadowColor: '#fffb88',
-    textShadowOffset: { width: 1, height: 1 }, 
-    textShadowRadius: 2,
-  },
+ 
   backgroundImage: {
     flex: 1,
     resizeMode: "cover", 
@@ -182,8 +180,27 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color:'white',
     fontWeight:"bold",
-    textShadowColor: '#fffb88',
+   
     fontSize:20,
+  },
+  img:{
+    width:100,
+    height:100,
+  },
+  img2:{
+    height:100,
+    width:150,
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 15,
+    color: 'white',
+    fontWeight:"bold",
   },
 });
 

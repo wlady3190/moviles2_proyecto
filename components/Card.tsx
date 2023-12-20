@@ -53,11 +53,9 @@ const styles = StyleSheet.create({
   text: {
     fontSize:15,
     marginBottom: 10,
-    color:'black',
+    color:'white',
     fontWeight:"bold",
-    textShadowColor: '#fffb88',
-    textShadowOffset: { width: 1, height: 1 }, 
-    textShadowRadius: 2,
+    
   },
 });
 

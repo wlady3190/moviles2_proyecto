@@ -135,7 +135,7 @@ export default function UsuarioScreen({ navigation }: any) {
 
   return (
     <ImageBackground
-      source={require("../assets/campo1.jpeg")}
+      source={require("../assets/fondo3.jpeg")}
       style={styles.backgroundImage}
     >
     <View style={styles.container}>
@@ -174,20 +174,22 @@ export default function UsuarioScreen({ navigation }: any) {
         secureTextEntry={true}
       />
       
-
-      <View style={styles.boton}>
-        <TouchableOpacity onPress={() => pickImageAsync()}>
-          <Text style={styles.text}>Cargar imagen</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.boton}>
-        <TouchableOpacity
-          onPress={() => crearUsuario(correo, usuario, contrasena)}
-        >
-          <Text style={styles.text}>Crear Usuario</Text>
-        </TouchableOpacity>
-      </View>
-      
+      <TouchableOpacity
+      onPress={() => pickImageAsync()}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Cargar Imagen</Text>
+    </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+      onPress={() => crearUsuario(correo, usuario, contrasena)}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Crear Usuario</Text>
+    </View>
+      </TouchableOpacity>
     </View>
     </ImageBackground>
 
@@ -201,7 +203,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
+
    
   },
   fila: {
@@ -231,7 +233,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 8,
     paddingRight: 8,
-    width: "100%",
+    width: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.8)", 
     borderRadius:15
   },
@@ -243,8 +245,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logo: {
-    width: 300, 
-    height: 200, 
+    width: 600, 
+    height: 300, 
    
   },
   text: {
@@ -256,4 +258,20 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 }, 
     textShadowRadius: 2,
   },
+    img:{
+      height:100,
+      width:150,
+      resizeMode: 'cover',
+    },
+    overlay: {
+      ...StyleSheet.absoluteFillObject,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    buttonText: {
+      fontSize: 15,
+      color: 'white',
+      fontWeight:"bold",
+    },
+  
 });

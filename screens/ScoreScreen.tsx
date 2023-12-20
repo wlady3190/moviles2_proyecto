@@ -37,7 +37,7 @@ const ScoreScreen = () => {
   }, [])
   return (
     <ImageBackground
-    source={require("../assets/campo1.jpeg")}
+    source={require("../assets/fondo3.jpeg")}
     style={styles.backgroundImage}>
 
     <View style={styles.container}>
@@ -46,7 +46,11 @@ const ScoreScreen = () => {
       <TouchableOpacity
       style={styles.boton}
       onPress={()=>leer()}>
-        <Text style={styles.text}>Recargar</Text>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Recargar</Text>
+    </View>
       </TouchableOpacity>
       <FlatList
         data={usuarios}
@@ -91,14 +95,9 @@ const styles = StyleSheet.create({
     textShadowColor: '#fffb88',
     textShadowOffset: { width: 3, height: 5 }, 
     textShadowRadius: 2,
+    marginTop:100
   },
-  boton: {
-    backgroundColor: "#ffb402", // Gris con opacidad para que se vea bien sobre el césped.
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 10,
-   
-  },
+
   text: {
     fontSize:15,
     marginBottom: 5,
@@ -107,6 +106,21 @@ const styles = StyleSheet.create({
     textShadowColor: '#fffb88',
     textShadowOffset: { width: 1, height: 1 }, 
     textShadowRadius: 2,
+  },
+  img:{
+    height:100,
+    width:200,
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 28,
+    color: 'white',
+    fontWeight:"bold",
   },
  
 })

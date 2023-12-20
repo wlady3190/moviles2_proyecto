@@ -59,7 +59,7 @@ export default function WelcomeScreen({ navigation }: any) {
   }
   return (
     <ImageBackground
-      source={require("../assets/campo1.jpeg")}
+      source={require("../assets/fondo3.jpeg")}
       style={styles.backgroundImage}
     >
     <View style={styles.container}>
@@ -79,14 +79,22 @@ export default function WelcomeScreen({ navigation }: any) {
         onChangeText={(text) => setpassword(text)}
         secureTextEntry
       />
-      <TouchableOpacity style={styles.boton} onPress={() => login()}>
-        <Text style={styles.text}>Login</Text>
+
+      <TouchableOpacity
+      onPress={() => login()}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Login</Text>
+    </View>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.boton}
-        onPress={() => navigation.navigate("Usuario")}
-      >
-        <Text style={styles.text}>Crear Usuario</Text>
+     onPress={() => navigation.navigate("Usuario")}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Crear Usuario</Text>
+    </View>
       </TouchableOpacity>
     </View>
     </ImageBackground>
@@ -98,7 +106,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    paddingHorizontal: 16,
+    
   },
   titulo: {
     fontSize: 60,
@@ -113,7 +121,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 8,
     paddingRight: 8,
-    width: "100%",
+    width: "50%",
     backgroundColor: "rgba(255, 255, 255, 0.8)", 
     borderRadius:15
   },
@@ -133,8 +141,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    width: 500, 
-    height: 200, 
+    width: 600, 
+    height: 300, 
     marginBottom: 20, 
   },
   text: {
@@ -145,5 +153,20 @@ const styles = StyleSheet.create({
     textShadowColor: '#fffb88',
     textShadowOffset: { width: 1, height: 1 }, 
     textShadowRadius: 2,
+  },
+  img:{
+    height:100,
+    width:150,
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight:"bold",
   },
 });

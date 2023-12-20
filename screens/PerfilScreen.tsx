@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View,Image, Button } from 'react-native'
+import { StyleSheet, Text, View,Image, Button,ImageBackground,TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import {auth, db} from '../components/Config'
 import { getDatabase, ref, set, onValue, update, remove } from 'firebase/database'
@@ -54,7 +54,13 @@ export default function PerfilScreen() {
   }, [])
 
   return (
+    <ImageBackground
+    source={require("../assets/fondo3.jpeg")}
+    style={styles.backgroundImage}
+  >
     <View style={styles.container}>
+      <Image source={require("../assets/logo1-PhotoRoom.png-PhotoRoom.png")}
+      style={styles.logo}/>
       <Image
         source={{ uri: url }}
         style={styles.profileImage}
@@ -69,9 +75,25 @@ export default function PerfilScreen() {
         <Text style={styles.label}>Score:{score}</Text>
         <Text style={styles.info}></Text>
 
-        <Button title='recargar' onPress={()=>leer()}/>
+        <TouchableOpacity
+      onPress={()=>leer()}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>Recargar</Text>
+    </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+      onPress={()=>leer()}>
+        <Image  source={require("../assets/panel.png")}
+        style={styles.img}/>
+       <View style={styles.overlay}>
+      <Text style={styles.buttonText}>LogOut</Text>
+    </View>
+      </TouchableOpacity>
       </View>
     </View>
+    </ImageBackground>
   );
 }
 
@@ -86,7 +108,7 @@ const styles = StyleSheet.create({
     width: 250,
     height: 250,
     borderRadius: 20,
-    marginBottom: 20,
+    marginBottom: 10,
     borderWidth: 2, // 
     borderColor: 'black',
   },
@@ -94,12 +116,39 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    fontSize: 18,
+    fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 5,
+    color:'white'
   },
   info: {
     fontSize: 16,
-    marginBottom: 15,
+   
   },
+  logo: {
+    width: 500, 
+    height: 200, 
+    marginBottom: 20,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover", 
+    justifyContent: "center",
+  },
+  img:{
+    height:100,
+    width:150,
+    resizeMode: 'cover',
+  },
+  overlay: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight:"bold",
+  },
+ 
 });
