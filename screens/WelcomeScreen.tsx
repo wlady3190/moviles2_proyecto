@@ -121,7 +121,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     paddingLeft: 8,
     paddingRight: 8,
-    width: "50%",
+    width: "70%",
     backgroundColor: "rgba(255, 255, 255, 0.8)", 
     borderRadius:15
   },
@@ -141,8 +141,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   logo: {
-    width: 600, 
-    height: 300, 
+    width: 400, 
+    height: 250, 
     marginBottom: 20, 
   },
   text: {

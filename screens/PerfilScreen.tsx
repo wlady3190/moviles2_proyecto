@@ -2,9 +2,10 @@ import { StyleSheet, Text, View,Image, Button,ImageBackground,TouchableOpacity }
 import React, { useEffect, useState } from 'react'
 import {auth, db} from '../components/Config'
 import { getDatabase, ref, set, onValue, update, remove } from 'firebase/database'
+import { getAuth, signOut } from "firebase/auth";
 
 
-export default function PerfilScreen() {
+export default function PerfilScreen({navigation}:any) {
     const [usuarios, setUsuarios] = useState([])
     const [url, seturl] = useState('')
     const [user, setuser] = useState('')
@@ -17,6 +18,19 @@ export default function PerfilScreen() {
       score: number
 
     }
+
+    function singout(){
+      signOut(auth).then(() => {
+        console.log('se cerro sesion exitosamente')
+        navigation.navigate('WELCOME')
+        
+        // Sign-out successful.
+      }).catch((error) => {
+        console.log('No cerro sesion exitosamente')
+        // An error happened.
+      });
+      
+      }
     //////////LEER
   function leer() {
     const starCountRef = ref(db, 'users/');
@@ -84,11 +98,11 @@ export default function PerfilScreen() {
     </View>
       </TouchableOpacity>
       <TouchableOpacity
-      onPress={()=>leer()}>
+      onPress={()=>singout()}>
         <Image  source={require("../assets/panel.png")}
         style={styles.img}/>
        <View style={styles.overlay}>
-      <Text style={styles.buttonText}>LogOut</Text>
+      <Text style={styles.buttonText}>Cerrar Sesion</Text>
     </View>
       </TouchableOpacity>
       </View>
@@ -105,8 +119,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   profileImage: {
-    width: 250,
-    height: 250,
+    width: 150,
+    height: 150,
     borderRadius: 20,
     marginBottom: 10,
     borderWidth: 2, // 
@@ -118,7 +132,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 5,
+   
     color:'white'
   },
   info: {
@@ -126,9 +140,9 @@ const styles = StyleSheet.create({
    
   },
   logo: {
-    width: 500, 
-    height: 200, 
-    marginBottom: 20,
+    width: 300, 
+    height: 150, 
+  
   },
   backgroundImage: {
     flex: 1,
@@ -136,8 +150,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   img:{
-    height:100,
-    width:150,
+    height:90,
+    width:140,
     resizeMode: 'cover',
   },
   overlay: {
