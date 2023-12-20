@@ -27,7 +27,9 @@ const ScoreScreen = () => {
       const data = snapshot.val();
   
       let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
-      setUsuarios(dataArray)    
+      const datosOrdenados: any = [...dataArray].sort((a, b) => b.score-a.score);
+    
+      setUsuarios(datosOrdenados)    
     });
   
   }
@@ -44,7 +46,7 @@ const ScoreScreen = () => {
       
       <Text style={styles.titulo}>SCOREBOARD</Text>
       <TouchableOpacity
-      style={styles.boton}
+      
       onPress={()=>leer()}>
         <Image  source={require("../assets/panel.png")}
         style={styles.img}/>
