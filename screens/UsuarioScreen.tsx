@@ -63,7 +63,7 @@ export default function UsuarioScreen({ navigation }: any) {
 
         //Obtiene la URL de la imagen
         const imageURL = await getDownloadURL(storageRef);
-        console.log("URL de descarga de la imagen", imageURL);
+        // console.log("URL de descarga de la imagen", imageURL);
         // setImageUrl(imageURL);
         //Guardando en la DB
         set(refStorage(db, "users/" + username), {
@@ -73,14 +73,14 @@ export default function UsuarioScreen({ navigation }: any) {
           score:0
         });
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
 
       //AUTENTIFICACIÓN
       createUserWithEmailAndPassword(auth, correo, contrasenia)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("Usuario registrado OK");
+          // console.log("Usuario registrado OK");
           Alert.alert("Datos registrados");
           navigation.navigate("WELCOME");
         })
@@ -123,7 +123,7 @@ export default function UsuarioScreen({ navigation }: any) {
 
     if (!result.canceled) {
       if (result.assets && result.assets.length > 0 && result.assets[0].uri) {
-        console.log(result);
+        // console.log(result);
         setImage(result.assets[0].uri);
       } else {
         alert("La estructura del resultado de la imagen no es la esperada.");

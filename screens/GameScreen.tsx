@@ -54,8 +54,8 @@ function leer() {
 
     let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
     setUsuarios(dataArray)
-    console.log(usuarios)
-    console.log(auth.currentUser?.email)
+    // console.log(usuarios)
+    // console.log(auth.currentUser?.email)
     for(let dato of usuarios){
       let item:item =dato
       

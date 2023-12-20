@@ -21,7 +21,7 @@ export default function WelcomeScreen({ navigation }: any) {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(user)
+        // console.log(user)
         //console.log('accso correcto')
         setemail("");
         setpassword("");
@@ -33,8 +33,8 @@ export default function WelcomeScreen({ navigation }: any) {
         //console.log('accseso denegado')
         setemail("");
         setpassword("");
-        console.log(errorCode);
-        console.log(errorMessage);
+        // console.log(errorCode);
+        // console.log(errorMessage);
         switch (errorCode) {
           case "auth/invalid-email":
             Alert.alert("La dirección de correo electrónico no es válida.");

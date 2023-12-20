@@ -21,12 +21,12 @@ export default function PerfilScreen({navigation}:any) {
 
     function singout(){
       signOut(auth).then(() => {
-        console.log('se cerro sesion exitosamente')
+        // console.log('se cerro sesion exitosamente')
         navigation.navigate('WELCOME')
         
         // Sign-out successful.
       }).catch((error) => {
-        console.log('No cerro sesion exitosamente')
+        // console.log('No cerro sesion exitosamente')
         // An error happened.
       });
       
@@ -39,8 +39,8 @@ export default function PerfilScreen({navigation}:any) {
   
       let dataArray:any=Object.keys(data).map(key =>({key,...data[key]}))
       setUsuarios(dataArray)
-      console.log(usuarios)
-      console.log(auth.currentUser?.email)
+      // console.log(usuarios)
+      // console.log(auth.currentUser?.email)
       for(let dato of usuarios){
         let item:item =dato
         
